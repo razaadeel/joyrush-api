@@ -5,7 +5,7 @@ const db = config.get('mongoURI');
 
 const connectDB = async () => {
     try {
-        await mongoose.connect(db, { useUnifiedTopology: true,useNewUrlParser: true, useCreateIndex:true });
+        await mongoose.connect("mongodb+srv://admin:admin@mern-n1n1y.mongodb.net/test?retryWrites=true&w=majority", { useUnifiedTopology: true,useNewUrlParser: true, useCreateIndex:true });
         console.log('Database Connected...');
     }
     catch (err) {
