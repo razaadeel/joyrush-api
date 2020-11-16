@@ -6,7 +6,6 @@ const bookingController = require('../controllers/bookingController');
 //Middlewares
 const booking = require('../middlewares/booking');
 
-const BookingTypes = require('../models/BookingTypes');
 
 
 // Get online drivers
