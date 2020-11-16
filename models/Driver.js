@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const UserSchema = new mongoose.Schema(
+const DriverSchema = new mongoose.Schema(
     {
         name: {
             type: String,
@@ -16,8 +16,16 @@ const UserSchema = new mongoose.Schema(
             require: true,
             select: false
         },
+        isOnline: {
+            type: Boolean,
+            default: false,
+        },
+        vehicleType: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'booking_types'
+        }
     },
     { timestamps: true }
-)
+);
 
-module.exports = User = mongoose.model('users', UserSchema);
+module.exports = mongoose.model('drivers', DriverSchema);
