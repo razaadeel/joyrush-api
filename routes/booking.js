@@ -13,5 +13,6 @@ const BookingTypes = require('../models/BookingTypes');
 router.get('/online_drivers', bookingController.onlineDrivers);
 router.post('/get_distance', booking.checkLocations, bookingController.mapDistance);
 router.get('/booking_types', bookingController.getTypes);
+router.post('/save_booking', booking.checkSaveBooking, bookingController.saveBooking);
 
 module.exports = router;

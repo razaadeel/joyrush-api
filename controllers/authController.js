@@ -49,7 +49,7 @@ exports.signup = async (req, res) => {
     }
     catch (err) {
         console.log(err.message);
-        res.status(500).send('SERVER ERROR');
+        res.status(500).send({ msg: 'Server Error' });
     }
 }
 
@@ -95,6 +95,6 @@ exports.signin = async (req, res) => {
     }
     catch (err) {
         console.log(err.message);
-        res.status(500).send('SERVER ERROR');
+        res.status(500).send({ msg: 'Server Error' });
     }
 }
