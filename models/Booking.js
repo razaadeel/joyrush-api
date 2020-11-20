@@ -21,22 +21,34 @@ const BookingSchema = new mongoose.Schema(
         estimatedPrice: {
             type: String,
         },
+        driver: {
+            type: mongoose.Schema.Types.ObjectId,
+        },
+        details: {
+            type: Object
+        },
         origin: {
-            lat: {
+            address: {
+                type: String
+            },
+            latitude: {
                 type: String,
                 required: true
             },
-            lng: {
+            longitude: {
                 type: String,
                 required: true
             }
         },
         destination: {
-            lat: {
+            address: {
+                type: String
+            },
+            latitude: {
                 type: String,
                 required: true
             },
-            lng: {
+            longitude: {
                 type: String,
                 required: true
             }

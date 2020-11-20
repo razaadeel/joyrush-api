@@ -43,16 +43,29 @@ exports.mapDistance = async (req, res) => {
 }
 
 exports.getTypes = async (req, res) => {
+    // try {
+    //     let id = req.query.id;
+    //     let bookingTypes = null;
+    //     if (id) {
+    //         bookingTypes = await BookingTypes.findById(id);
+    //         res.status(200).json(bookingTypes);
+    //     } else {
+    //         bookingTypes = await BookingTypes.find().select('name');
+    //         res.status(200).json(bookingTypes);
+    //     }
+    // } catch (error) {
+    //     console.log(error.message)
+    //     res.status(500).send({ msg: 'Server Error' });
+    // }
     try {
-        let id = req.query.id;
-        let bookingTypes = null;
-        if (id) {
-            bookingTypes = await BookingTypes.findById(id);
-            res.status(200).json(bookingTypes);
-        } else {
-            bookingTypes = await BookingTypes.find().select('name');
-            res.status(200).json(bookingTypes);
-        }
+        let { distance, duration } = req.body;
+        let bookingTypes = await BookingTypes.find();
+        let data = bookingTypes.map(type => ({
+            id: type._id,
+            name: type.name,
+            estimatedPrice: (type.priceMin * duration + type.priceKm * distance).toFixed(2),
+        }))
+        res.status(200).json(data);
     } catch (error) {
         console.log(error.message)
         res.status(500).send({ msg: 'Server Error' });
