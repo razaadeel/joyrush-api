@@ -43,6 +43,7 @@ exports.mapDistance = async (req, res) => {
 }
 
 exports.getTypes = async (req, res) => {
+    //req by id
     // try {
     //     let id = req.query.id;
     //     let bookingTypes = null;
