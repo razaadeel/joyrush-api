@@ -81,7 +81,18 @@ exports.saveBooking = async (req, res) => {
         await booking.save();
         res.status(200).json(data);
     } catch (error) {
-        console.log(error)
-        res.status(400).json()
+        console.log(error);
+        res.status(400).json({ msg: error.message });
+    }
+}
+
+exports.getUserBookings = async (req, res) => {
+    try {
+        let data = await Booking.find({ userId: req.user.id })
+            .populate('bookingType', 'name');
+        res.status(200).json(data);
+    } catch (error) {
+        console.log(error);
+        res.status(400).json({ msg: error.message });
     }
 }

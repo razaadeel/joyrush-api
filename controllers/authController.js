@@ -57,7 +57,7 @@ exports.signin = async (req, res) => {
     const { email, password } = req.body;
     try {
         //  If User exists
-        let user = await User.findOne({ email }).select('password');
+        let user = await User.findOne({ email }).select('password email name');
         if (!user) {
             return res.status(400).json({
                 status: 'failed',
@@ -87,8 +87,9 @@ exports.signin = async (req, res) => {
             (err, token) => {
                 if (err) throw err;
                 res.json({
-                    status: 'success',
                     token,
+                    email: user.email,
+                    name: user.name
                 });
             }
         )

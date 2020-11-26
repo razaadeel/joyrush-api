@@ -27,6 +27,10 @@ const BookingSchema = new mongoose.Schema(
         details: {
             type: Object
         },
+        status: {
+            type: String,
+            enum: ['Que', 'Cancelled', 'Complete', 'Progress']
+        },
         origin: {
             address: {
                 type: String
