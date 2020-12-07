@@ -5,11 +5,13 @@ const Driver = require('../models/Driver');
 const BookingTypes = require('../models/BookingTypes');
 const Booking = require('../models/Booking');
 
+
+//GET online drivers
 exports.onlineDrivers = async (req, res) => {
     try {
         const onlineDrivers = await Driver
             .find({ isOnline: true })
-            .populate('vehicleType', ['name']);
+            .populate('vehicleType', ['name']); //populate is like join in sql
 
         res.status(200).json(onlineDrivers);
     } catch (err) {
@@ -18,6 +20,7 @@ exports.onlineDrivers = async (req, res) => {
     }
 }
 
+//get distance and duration and estimated price
 exports.mapDistance = async (req, res) => {
     try {
         let bookingType = await BookingTypes.findOne({ name: 'Car' });
@@ -42,22 +45,8 @@ exports.mapDistance = async (req, res) => {
     }
 }
 
+//GET booking types
 exports.getTypes = async (req, res) => {
-    //req by id
-    // try {
-    //     let id = req.query.id;
-    //     let bookingTypes = null;
-    //     if (id) {
-    //         bookingTypes = await BookingTypes.findById(id);
-    //         res.status(200).json(bookingTypes);
-    //     } else {
-    //         bookingTypes = await BookingTypes.find().select('name');
-    //         res.status(200).json(bookingTypes);
-    //     }
-    // } catch (error) {
-    //     console.log(error.message)
-    //     res.status(500).send({ msg: 'Server Error' });
-    // }
     try {
         let { distance, duration } = req.body;
         let bookingTypes = await BookingTypes.find();
@@ -73,6 +62,7 @@ exports.getTypes = async (req, res) => {
     }
 }
 
+
 exports.saveBooking = async (req, res) => {
     try {
         let data = req.body;
@@ -85,6 +75,7 @@ exports.saveBooking = async (req, res) => {
         res.status(400).json({ msg: error.message });
     }
 }
+
 
 exports.getUserBookings = async (req, res) => {
     try {

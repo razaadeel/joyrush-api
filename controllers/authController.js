@@ -29,7 +29,7 @@ exports.signup = async (req, res) => {
 
         await user.save();
 
-        // Return JSONWEBTOKEN
+        // Return JSON_WEB_TOKEN
         const payload = {
             user: {
                 id: user.id
@@ -82,6 +82,7 @@ exports.signin = async (req, res) => {
             }
         }
 
+        //return user details
         jwt.sign(payload,
             config.get('jwtSecret'),
             (err, token) => {
